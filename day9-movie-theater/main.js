@@ -67,10 +67,6 @@ const checkInsideRayCasting = (point, data) => {
     return inside;
 }
 
-const largestRectangleArea = (heights) => {
-    return heights.reduce((max, height) => Math.max(max, height), 0);
-}
-
 const calculateStar2 = () => {
     const data = loadTestData(true);
     

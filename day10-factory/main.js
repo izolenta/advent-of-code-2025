@@ -67,30 +67,6 @@ const getSetBitPositions = (num) => {
   return positions;
 }
 
-const leastNumberOfPressRequiredForJoltage = (jolts, required, buttons, steps, min, startIndex = 0) => {
-    if (jolts.every((jolt, index) => jolt === required[index])) {
-//        console.log("Found", steps);
-        return steps;
-    }
-    if (jolts.some((jolt, index) => jolt > required[index])) {
-        return min;
-    }
-    if (steps >= min) {
-        return min;
-    }
-    
-    let newMin = min;
-    for (let i = startIndex; i < buttons.length; i++) {
-        const positions = getSetBitPositions(buttons[i]);
-        let next = jolts.map((nextJolt, index) => {
-            const res = nextJolt + (positions.includes(index) ? 1 : 0);
-            return res;
-        });
-        newMin = Math.min(newMin, leastNumberOfPressRequiredForJoltage(next, required, buttons, steps + 1, newMin, i));
-    }
-    return newMin;
-}
-
 const calculateStar1 = () => {
     const data = loadTestData(true);
     let sum = 0;
